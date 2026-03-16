@@ -1,37 +1,51 @@
+# macOS Dotfiles
 
+Config files for AeroSpace, Ghostty, and JankyBorders.
 
-# macOS Dotfiles Setup### AeroSpace InstallationAeroSpace is an i3-like tiling window manager for macOS.
-1. **Install via Homebrew:**
-   ```bash
-   brew install --cask nikitabobko/tap/aerospace
+---
 
+## 1. Install Dependencies
 
-   1. Grant Permissions:
-   Go to System Settings > Privacy & Security > Accessibility and enable AeroSpace.
-   2. Config Location:
-   Place your configuration at ~/.config/aerospace/aerospace.toml.
-   3. Run:
-   Launch AeroSpace from your Applications folder or via Spotlight.
+Run this to install everything at once:
+```bash
+brew install --cask nikitabobko/tap/aerospace
+brew install --cask ghostty
+brew install FelixKratz/formulae/borders
+```
 
-------------------------------
-Ghostty Installation
-Ghostty is a high-performance, GPU-accelerated terminal emulator.
+---
 
-   1. Install via Homebrew:
-   
-   brew install --cask ghostty
-   
-   2. Config Location:
-   Place your configuration at ~/.config/ghostty/config.
-   3. Explore Settings:
-   To see all available configuration options, run:
-   
-   ghostty +show-config --default --docs
-   
-   
-------------------------------
-Syncing Configs (Optional)
-To use the files from this repository, symlink them to your home directory:
+## 2. Symlink Configs
 
-ln -s ~/path/to/your/repo/aerospace/aerospace.toml ~/.config/aerospace/aerospace.toml
-ln -s ~/path/to/your/repo/ghostty/config ~/.config/ghostty/config
+Run from the root of this repo:
+```bash
+ln -s "$(pwd)/aerospace/aerospace.toml" ~/.config/aerospace/aerospace.toml
+ln -s "$(pwd)/ghostty/config" ~/.config/ghostty/config
+```
+
+---
+
+## 3. Grant Accessibility Permission (AeroSpace)
+
+1. Open **System Settings > Privacy & Security > Accessibility**
+2. Enable **AeroSpace**
+
+---
+
+## 4. Start Everything
+
+**AeroSpace** — launch from Applications or Spotlight. It will automatically start JankyBorders on launch (configured in `aerospace.toml`).
+
+**Ghostty** — launch from Applications or Spotlight.
+
+> JankyBorders is started and managed by AeroSpace via `after-startup-command` in the config. You do not need to start it manually.
+
+---
+
+## What Each Tool Does
+
+| Tool | Purpose |
+|------|---------|
+| AeroSpace | i3-like tiling window manager |
+| Ghostty | GPU-accelerated terminal emulator |
+| JankyBorders | Highlights the active window with a colored border |
